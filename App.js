@@ -5,6 +5,9 @@ const initialState = {
   name: "initial state",
 };
 
+const counterDiv = document.getElementById("counter");
+const button = document.getElementById("button");
+
 const INCREMENT = "count/increment";
 const DECREMENT = "count/decrement";
 const INCRESE_BY = "count/incrementBy";
@@ -28,13 +31,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         count: state.count + action.payload,
-        name: "state Incremented by " + action.payload,
+        name: "state increased by " + action.payload,
       };
     case DECRESE_BY:
       return {
         ...state,
         count: state.count - action.payload,
-        name: "state Incremented by " + action.payload,
+        name: "state decresed by " + action.payload,
       };
 
     default:
@@ -42,14 +45,19 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-const store = createStore(reducer);
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__?.());
 console.log(store);
 
 store.subscribe(() => {
   console.log(store.getState());
+  counterDiv.innerText = store.getState().count;
 });
 
-store.dispatch({ type: INCREMENT });
-store.dispatch({ type: DECREMENT });
-store.dispatch({ type: INCRESE_BY, payload: 5 });
-store.dispatch({ type: DECRESE_BY, payload: 3 });
+button.addEventListener("click", () => {
+  store.dispatch({ type: INCREMENT });
+});
+
+// store.dispatch({ type: INCREMENT });
+// store.dispatch({ type: DECREMENT });
+// store.dispatch({ type: INCRESE_BY, payload: 5 });
+// store.dispatch({ type: DECRESE_BY, payload: 3 });
