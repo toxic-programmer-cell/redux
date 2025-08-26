@@ -1,11 +1,13 @@
-import { productList } from "./store/productList";
+import React from "react";
 import Product from "./components/Product";
+import { useSelector } from "react-redux";
 
 const App = () => {
-  console.log(productList.products);
+  const productList = useSelector((state) => state.product.products);
+  console.log(productList);
   return (
     <div className="products-container">
-      {productList.products.map((item) => (
+      {productList.map((item) => (
         <Product key={item.id} productData={item} />
       ))}
     </div>

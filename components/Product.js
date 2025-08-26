@@ -1,5 +1,5 @@
 export default function Product({ productData }) {
-  console.log(productData);
+  // console.log(productData);
   const { title, discount, price, image } = productData;
   return (
     <div className="product">

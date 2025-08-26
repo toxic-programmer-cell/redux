@@ -17,7 +17,10 @@ const reducer = combineReducers({
   wishList: wishListReducer,
 });
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__?.());
+export const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__?.()
+);
 
 store.dispatch(addToCart(1));
 store.dispatch(addToCart(2));
